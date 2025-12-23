@@ -2,18 +2,18 @@ import React from "react";
 
 export const Header = () => {
   return (
-    <div className="shadow-md">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
-        <div className='items-center" flex'>
+    <header className="shadow-md">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-8">
+        <div className='items-center flex'>
           <img
-            className="h-30"
-            src="https://i.pinimg.com/1200x/33/4e/6e/334e6e776238465d04369ee02a7a90a8.jpg"
+            className="h-20"
+            src="https://i.pinimg.com/736x/04/7c/c7/047cc723aa86965968c1a990d09a7e18.jpg"
             alt="Logo do Hosting"
           />
-          {/* <p className='text-2xl font-bold text-primary-400'>Homes</p> */}
+          <p className='text-3xl font-bold text-primary-400 -ml-7 mt-8'>.Homes</p>
         </div>
 
-        <div className="flex items-center rounded-full border border-gray-300 py-2 pr-4 pl-6 shadow-md">
+        <div className="hidden lg:flex items-center rounded-full border border-gray-300 py-2 pr-4 pl-6 shadow-md">
           <p className="border-r border-r-gray-300 pr-4">Qualquer lugar</p>
           <p className="border-r border-r-gray-300 px-4">Qualquer semana</p>
           <p className="px-4">Hóspedes</p>
@@ -64,13 +64,12 @@ export const Header = () => {
             />
           </svg>
 
-          <p>Franciele Santos</p>
+          <p className="max-w-20 truncate sm:max-w-32">Franciele Santos</p>
         </div>
 
       </div>
-    </div>
+    </header>
   );
 };
 
 export default Header;
-  
