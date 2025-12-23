@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
-@theme {  
-    --color-primary-400: #FF385C; 
+@theme {
+  --color-primary-400: #ff385c;
+  --font-hosting:
+    Airbnb Cereal VF, Circular, -apple-system, BlinkMacSystemFont, Roboto,
+    Helvetica Neue, sans-serif;
 }
