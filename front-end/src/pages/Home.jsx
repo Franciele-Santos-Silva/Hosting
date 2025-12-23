@@ -1,7 +1,7 @@
 import React from "react";
 import Item from "../components/Item";
 
-export const Home = () => {
+const Home = () => {
   return (
     <section>
       <div className="mx-auto grid max-w-7xl grid-cols-[repeat(auto-fit,minmax(225px,1fr))] gap-8 p-8">
@@ -17,3 +17,5 @@ export const Home = () => {
     </section>
   );
 };
+
+export default Home
