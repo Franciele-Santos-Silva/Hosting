@@ -1,8 +1,12 @@
 import { Router } from 'express';
+import { connectDb } from "../../config/db.js";
+import User from "./model.js";
+import bcrypt from 'bcryptjs';
 
 const router = Router();
+const bcryptSalt = bcrypt.genSaltSync();
 
-router.get("/users", async (req, res) => {
+router.get("/", async (req, res) => {
   connectDb();
 
   try {
@@ -14,7 +18,7 @@ router.get("/users", async (req, res) => {
   }
 });
 
-router.post("/users", async (req, res) => {
+router.post("/", async (req, res) => {
   connectDb();
 
   const { name, email, password } = req.body;
@@ -32,3 +36,5 @@ router.post("/users", async (req, res) => {
     res.status(500).json(error);
   }
 });
+
+export default router;
