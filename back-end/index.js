@@ -1,11 +1,12 @@
 import "dotenv/config";
 import express from "express";
 import { connectDb } from "./config/db.js";
-import User from "./models/User.js";
+import User from "./domains/model/User.js";
 import bcrypt from 'bcryptjs';
 
 const app = express();
 const { PORT } = process.env;
+const bcryptSalt = bcrypt.genSaltSync();
 
 app.use(express.json());
 
@@ -25,12 +26,13 @@ app.post("/users", async (req, res) => {
   connectDb();
 
   const { name, email, password } = req.body;
+  const encryptedPassword = bcrypt.hashSync(password, bcryptSalt)
 
   try {
     const newUserDoc = await User.create({
       name,
       email,
-      password,
+      password: encryptedPassword,
     });
 
     res.json(newUserDoc);
