@@ -47,10 +47,10 @@ router.post("/login", async (req, res) => {
 
     if (userDoc) {
       const passwordCorrect = bcrypt.compareSync(password, userDoc.password);
-      const { name, _id}  = userDoc;
+      const { name, _id } = userDoc;
 
       passwordCorrect
-        ? res.json(name, email, _id)
+        ? res.json({ name, email, _id })
         : res.status(400).json("Senha errada");
     } else {
       res.status(400).json("Usuário não encontrado");
