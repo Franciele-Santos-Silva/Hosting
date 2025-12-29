@@ -17,7 +17,6 @@ const Login = ({ setUser }) => {
           password,
         });
 
-        console.log(userDoc);
         setUser(userDoc);
         setRedirect(true);
       } catch (error) {
