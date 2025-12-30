@@ -7,7 +7,7 @@ import jwt from "jsonwebtoken";
 
 const router = Router();
 const bcryptSalt = bcrypt.genSaltSync();
-const { JWT_SERCRET_KEY } = process.env;
+const { JWT_SECRET_KEY } = process.env;
 
 router.get("/", async (req, res) => {
   connectDb();
@@ -54,9 +54,9 @@ router.post("/login", async (req, res) => {
 
       if (passwordCorrect) {
         const newUserObj = { name, email, _id };
-        const token = jwt.sign(newUserObj, JWT_SERCRET_KEY);
+        const token = jwt.sign(newUserObj, JWT_SECRET_KEY);        
 
-        res.json(newUserObj);
+        res.cookie("token", token).json(newUserObj);
       } else {
         res.status(400).json("Senha inválida.");
       }
