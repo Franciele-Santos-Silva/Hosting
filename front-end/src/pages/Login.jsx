@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
-import axios from "axi";
+import axios from "axios";
 
 const Login = ({ user, setUser }) => {
   const [email, setEmail] = useState("");
