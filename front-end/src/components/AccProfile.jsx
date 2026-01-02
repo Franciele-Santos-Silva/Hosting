@@ -1,11 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+import { Navigate } from "react-router-dom";
 
-const AccProfile = () => {
+const AccProfile = ({ user }) => {
+  const [redirect, setRedirect] = useState(false);
+
+  const logout = async () => {
+    try {
+      const { data } = await axios.post("/users/logout");
+      console.log(data);
+
+      setRedirect(true);    
+    } catch (error) {
+      alert(JSON.stringify(error));
+    }
+  };
+
+  if (redirect) return <Navigate to={"/"} />;
+
+  if (!user) return <></>;
+
   return (
-    <div className="flex flex-col items-center gap-2">
-      <p>Logado como Franciele (fran@gmail.com) </p>
+    <div className="flex flex-col items-center gap-4">
+      <p>
+        Logado como {user.name} ({user.email})
+      </p>
 
-      <button className="bg-primary-400 min-w-44 cursor-pointer rounded-full px-4 py-2 text-white transition">
+      <button
+        onClick={logout}
+        className="bg-primary-400 min-w-44 cursor-pointer rounded-full px-4 py-2 text-white transition"
+      >
         Logout
       </button>
     </div>

@@ -35,7 +35,7 @@ function App() {
           element={<Login user={user} setUser={setUser} />}
         />
         <Route path="/register" element={<Register setUser={setUser} />} />
-        <Route path="/account/:subpage?" element={<Account />} />
+        <Route path="/account/:subpage?" element={<Account user={user} />} />
       </Routes>
     </BrowserRouter>
   );
