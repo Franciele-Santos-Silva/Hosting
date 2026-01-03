@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Navigate } from "react-router-dom";
 
-const AccProfile = ({ user }) => {
+const AccProfile = ({ user, setUser }) => {
   const [redirect, setRedirect] = useState(false);
 
   const logout = async () => {
@@ -10,6 +10,7 @@ const AccProfile = ({ user }) => {
       const { data } = await axios.post("/users/logout");
       console.log(data);
 
+      setUser(null);
       setRedirect(true);    
     } catch (error) {
       alert(JSON.stringify(error));

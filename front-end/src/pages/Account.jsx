@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import AccProfile from "../components/AccProfile";
 
-const Account = ({user}) => {
+const Account = ({ user, setUser }) => {
   const { subpage } = useParams();
 
   const buttonClass = (button) => {
@@ -29,7 +29,7 @@ const Account = ({user}) => {
           </Link>
         </div>
 
-        {subpage === "profile" && <AccProfile user={user} />}
+        {subpage === "profile" && <AccProfile user={user} setUser={setUser} />}
       </div>
     </section>
   );
