@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
+import { useUserContext } from "../contexts/UserContext";
 
-const Register = ({ setUser }) => {
+const Register = () => {
+  const { setUser } = useUserContext();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -11,22 +13,22 @@ const Register = ({ setUser }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-        if (email && password && name) {
-          try {
-            const { data: userDoc } = await axios.post("/users", {
-              name,
-              email,
-              password,
-            });
+    if (email && password && name) {
+      try {
+        const { data: userDoc } = await axios.post("/users", {
+          name,
+          email,
+          password,
+        });
 
-            setUser(userDoc);
-            setRedirect(true);
-          } catch (error) {
-            alert(`Deu erro ao cadastrar usuário: ${JSON.stringify(error)}`);
-          }
-        } else {
-          alert("Você precisa preencher o email, o nome e a senha!");
-        }
+        setUser(userDoc);
+        setRedirect(true);
+      } catch (error) {
+        alert(`Deu erro ao cadastrar usuário: ${JSON.stringify(error)}`);
+      }
+    } else {
+      alert("Você precisa preencher o email, o nome e a senha!");
+    }
   };
 
   if (redirect) return <Navigate to="/" />;
@@ -54,7 +56,7 @@ const Register = ({ setUser }) => {
           />
 
           <input
-            type="password" 
+            type="password"
             className="w-full rounded-full border border-gray-300 px-4 py-2"
             placeholder="Digite sua senha"
             value={password}
