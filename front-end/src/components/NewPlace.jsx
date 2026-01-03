@@ -6,6 +6,11 @@ const NewPlace = () => {
   const [city, setCity] = useState("");
   const [photos, setPhotos] = useState("");
   const [description, setDescription] = useState("");
+  const [extras, setExtras] = useState("");
+  const [price, setPrice] = useState("");
+  const [checkin, setCheckin] = useState("");
+  const [checkout, setCheckout] = useState("");
+  const [guests, setGuests] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,7 +18,7 @@ const NewPlace = () => {
 
   return (
     <form onSubmit={handleSubmit} className="flex w-full flex-col gap-6 px-8">
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-1">
         <label htmlFor="title" className="text-2xl font-bold">
           Título
         </label>
@@ -27,7 +32,7 @@ const NewPlace = () => {
         />
       </div>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-1">
         <label htmlFor="city" className="text-2xl font-bold">
           Cidade e País
         </label>
@@ -85,7 +90,7 @@ const NewPlace = () => {
         </div>
       </div>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-1">
         <label htmlFor="description" className="text-2xl font-bold">
           Descrição
         </label>
@@ -98,13 +103,92 @@ const NewPlace = () => {
         />
       </div>
 
-      <div className="flex flex-col gap-2">
-        <label htmlFor="perks" className="ml-2 text-2xl font-bold">
+      <div className="flex flex-col gap-1">
+        <label htmlFor="perks" className="text-2xl font-bold">
           Comodidades
         </label>
 
         <Perks />
       </div>
+
+      <div className="flex flex-col gap-1">
+        <label htmlFor="extras" className="text-2xl font-bold">
+          Informações Extras
+        </label>
+        <textarea
+          placeholder="Digite a descrição do seu anúncio"
+          className="h-56 resize-none rounded-2xl border border-gray-300 px-4 py-2"
+          id="extras"
+          value={extras}
+          onChange={(e) => setExtras(e.target.value)}
+        />
+      </div>
+
+      <div className="flex flex-col gap-1">
+        <h2 className="text-2xl font-bold">Restrições e Preço</h2>
+
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(225px,1fr))] gap-6">
+          <div className="flex flex-col gap-1">
+            <label className="ml-2 text-xl font-bold" htmlFor="price">
+              Preço
+            </label>
+            <input
+              type="number"
+              placeholder="500"
+              className="rounded-full border border-gray-300 px-4 py-2"
+              id="price"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+            />
+          </div>
+
+          <div className="flex flex-col gap-1">
+            <label className="ml-2 text-xl font-bold" htmlFor="checkin">
+              Checkin
+            </label>
+            <input
+              type="text"
+              placeholder="15:00"
+              className="rounded-full border border-gray-300 px-4 py-2"
+              id="checkin"
+              value={checkin}
+              onChange={(e) => setCheckin(e.target.value)}
+            />
+          </div>
+
+          <div className="flex flex-col gap-1">
+            <label className="ml-2 text-xl font-bold" htmlFor="checkout">
+              Checkout
+            </label>
+            <input
+              type="text"
+              placeholder="16:00"
+              className="rounded-full border border-gray-300 px-4 py-2"
+              id="checkout"
+              value={checkout}
+              onChange={(e) => setCheckout(e.target.value)}
+            />
+          </div>
+
+          <div className="flex flex-col gap-1">
+            <label className="ml-2 text-xl font-bold" htmlFor="guests">
+              N° convidados
+            </label>
+            <input
+              type="number"
+              placeholder="3"
+              className="rounded-full border border-gray-300 px-4 py-2"
+              id="guests"
+              value={guests}
+              onChange={(e) => setGuests(e.target.value)}
+            />
+          </div>
+        </div>
+      </div>
+
+      <button className="bg-primary-400 hover:bg-primary-500 min-w-44 cursor-pointer rounded-full px-4 py-2 text-white transition">
+        Salvar informações
+      </button>
     </form>
   );
 };

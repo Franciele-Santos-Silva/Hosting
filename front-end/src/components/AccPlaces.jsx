@@ -7,7 +7,7 @@ export const AccPlaces = () => {
   const { action } = useParams();
 
   return (
-    <div className="w-full max-w-7xl">
+    <div className="flex w-full max-w-7xl flex-col items-center">
       {action !== "new" ? (
         <Link
           to="/account/places/new"
