@@ -6,7 +6,6 @@ const NewPlace = () => {
   const [city, setCity] = useState("");
   const [photos, setPhotos] = useState("");
   const [description, setDescription] = useState("");
- 
 
   const handleSubmit = (e) => {
     e.preventDefault();
