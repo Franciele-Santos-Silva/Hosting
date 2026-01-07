@@ -1,9 +1,13 @@
 import { Router } from "express";
 import { Place } from "./model.js";
+import { JWTVerify } from "../../ultils/jwt.js";
+import { connectDb } from "../../config/db.js";
 
 const router = Router();
 
 router.post("/", async (req, res) => {
+  connectDb();
+  
   const {
     title,
     city,
@@ -18,6 +22,8 @@ router.post("/", async (req, res) => {
   } = req.body;
 
   try {
+    const { _id: owner } = await JWTVerify(req);
+
     const NewPlaceDoc = await Place.create({
       owner,
       title,
