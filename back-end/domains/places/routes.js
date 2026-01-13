@@ -2,12 +2,14 @@ import { Router } from "express";
 import { Place } from "./model.js";
 import { JWTVerify } from "../../ultils/jwt.js";
 import { connectDb } from "../../config/db.js";
+import { downloadImage } from "../../ultils/imageDownloader.js";
+import {dirname} from "../../index.js"
 
 const router = Router();
 
 router.post("/", async (req, res) => {
   connectDb();
-  
+
   const {
     title,
     city,
@@ -42,6 +44,14 @@ router.post("/", async (req, res) => {
     console.log(error);
     res.status(500).json("Deu erro ao criar novo lugar");
   }
+});
+
+router.post("/upload-link", async(req, res) => {
+  const { link } = req.body;
+
+ await downloadImage(link, `${__dirname}/tmp/`);
+
+
 });
 
 export default router;

@@ -1,12 +1,19 @@
-import download from "image-downloader"
+import download from "image-downloader";
+import mime from "mime-types";
 
-options = {
-  url: 'http://someurl.com/image2.jpg',
-  dest: '/path/to/dest/photo.jpg',     // will be saved to /path/to/dest/photo.jpg
+export const downloadImage = async (link, destination) => {
+  const extension = mime.extensions(link);
+  const { filename } = `${Date.now()}.${extension}`;
+  options = {
+    url: link,
+    dest: `${destination}${filename}`,
+  };
+
+  try {
+    await download.image(options);
+
+    console.log("Saved to", filename);
+  } catch (error) {
+    console.error(error);
+  }
 };
-
-download.image(options)
-  .then(({ filename }) => {
-    console.log('Saved to', filename); // saved to /path/to/dest/photo.jpg
-  })
-  .catch((err) => console.error(err));
