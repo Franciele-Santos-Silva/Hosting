@@ -5,7 +5,7 @@ import { Navigate } from "react-router-dom";
 import { useUserContext } from "../contexts/UserContext";
 
 const NewPlace = () => {
-  const {user} = useUserContext();
+  const { user } = useUserContext();
   const [title, setTitle] = useState("");
   const [city, setCity] = useState("");
   const [photos, setPhotos] = useState([]);
@@ -47,7 +47,6 @@ const NewPlace = () => {
         });
 
         console.log(newPlace);
-        
 
         SetRedirect(true);
       } catch (error) {
