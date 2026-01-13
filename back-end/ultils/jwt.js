@@ -31,7 +31,7 @@ export const JWTSing = (newUserObj) => {
         if (error) {
           console.error("Deu erro ao assinar com o JWT ", error);
           reject(error);
-        }
+        } 
         resolve(token);
       }
     );

@@ -2,8 +2,10 @@ import { useState } from "react";
 import Perks from "./Perks";
 import axios from "axios";
 import { Navigate } from "react-router-dom";
+import { useUserContext } from "../contexts/UserContext";
 
 const NewPlace = () => {
+  const {user} = useUserContext();
   const [title, setTitle] = useState("");
   const [city, setCity] = useState("");
   const [photos, setPhotos] = useState([]);
@@ -16,33 +18,45 @@ const NewPlace = () => {
   const [guests, setGuests] = useState("");
   const [redirect, SetRedirect] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // photos.length > 0 &&
     if (
       title &&
       city &&
-      photos.length > 0 &&
       description &&
       price &&
       checkin &&
       checkout &&
       guests
     ) {
-      console.log("Todos estão preenchidos");
+      try {
+        const newPlace = await axios.post("/places", {
+          owner: user._id,
+          title,
+          city,
+          photos,
+          description,
+          extras,
+          perks,
+          price,
+          checkin,
+          checkout,
+          guests,
+        });
+
+        console.log(newPlace);
+        
+
+        SetRedirect(true);
+      } catch (error) {
+        console.error(JSON.stringify(error));
+        alert("Deu erro ao criar um novo lugar");
+      }
     } else {
       alert("Preencha todas as informações antes de enviar");
     }
-
-
-    //   const NewPlace = await axios.post('/places')
-
-    // try {
-    //   SetRedirect(true);
-    // } catch (error) {
-    //   console.error(JSON.stringify(error));
-    //   alert("Deu erro ao criar um novo lugar");
-    // }
   };
 
   if (redirect) return <Navigate to="/account/places" />;
@@ -139,7 +153,7 @@ const NewPlace = () => {
           Comodidades
         </label>
 
-        <Perks  {...{perks, setPerks}} />
+        <Perks {...{ perks, setPerks }} />
       </div>
 
       <div className="flex flex-col gap-1">
