@@ -46,10 +46,20 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.post("/upload-link", async (req, res) => {
+router.post("/upload/link", async (req, res) => {
   const { link } = req.body;
 
-  await downloadImage(link, `${__dirname}/tmp/`);
+  try {
+    
+    await downloadImage(link, `${__dirname}/tmp/`);
+
+    res.json("Imagem enviada!")
+  } catch (error) {
+     console.log(error);
+    res.status(500).json("Deu erro ao baixar a imagem");
+    
+  }
+
 });
 
 export default router;
