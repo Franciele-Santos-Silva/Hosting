@@ -8,7 +8,7 @@ export const downloadImage = async (link, destination) => {
 
   const filename = `${Date.now()}.${extension}`;
 
-  console.log({mime, contentType, link, extension});
+  console.log({ mime, contentType, link, extension });
 
   try {
     const options = {
@@ -18,8 +18,9 @@ export const downloadImage = async (link, destination) => {
 
     await download.image(options);
 
-    console.log("Saved to", filename);
+    // console.log("Saved to", filename);
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };

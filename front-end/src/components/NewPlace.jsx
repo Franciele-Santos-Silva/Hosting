@@ -104,7 +104,7 @@ const NewPlace = () => {
             value={photos}
             onChange={(e) => setPhotos(e.target.value)}
           />
-          <button className="cursor-pointer rounded-full border border-gray-300 bg-gray-100 px-4 py-2 transition hover:bg-gray-200">
+          <button onClick={uploadByLink} className="cursor-pointer rounded-full border border-gray-300 bg-gray-100 px-4 py-2 transition hover:bg-gray-200">
             Enviar foto
           </button>
         </div>
