@@ -17,6 +17,7 @@ const NewPlace = () => {
   const [checkout, setCheckout] = useState("");
   const [guests, setGuests] = useState("");
   const [redirect, SetRedirect] = useState(false);
+  const [photolink, setPhotolink] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -55,6 +56,20 @@ const NewPlace = () => {
       }
     } else {
       alert("Preencha todas as informações antes de enviar");
+    }
+  };
+
+  const uploadByLink = async () => {
+e.preventDefault()
+
+    if (photolink) {
+      await axios.post("/places/upload/link", {
+        link: photolink,
+      });
+      console.log('Imagem enviada com sucesso!');
+      
+    } else {
+      alert("Não existe nenhum link a ser enviado");
     }
   };
 
@@ -100,11 +115,14 @@ const NewPlace = () => {
             type="text"
             placeholder="Adicione uma foto via link"
             className="grow rounded-full border border-gray-300 px-4 py-2"
-            id="photos"
-            value={photos}
-            onChange={(e) => setPhotos(e.target.value)}
+            id="photolink"
+            value={photolink}
+            onChange={(e) => setPhotolink(e.target.value)}
           />
-          <button onClick={uploadByLink} className="cursor-pointer rounded-full border border-gray-300 bg-gray-100 px-4 py-2 transition hover:bg-gray-200">
+          <button
+            onClick={uploadByLink}
+            className="cursor-pointer rounded-full border border-gray-300 bg-gray-100 px-4 py-2 transition hover:bg-gray-200"
+          >
             Enviar foto
           </button>
         </div>
