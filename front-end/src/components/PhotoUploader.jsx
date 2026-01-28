@@ -11,7 +11,6 @@ const PhotoUploader = ({ photolink, setPhotoLink, setPhotos, photos }) => {
       });
 
       setPhotos((prevValue) => [...prevValue, filename]);
-      //   console.log("Imagem enviada com sucesso!");
     } else {
       alert("Não existe nenhum link a ser enviado");
     }
@@ -21,7 +20,7 @@ const PhotoUploader = ({ photolink, setPhotoLink, setPhotos, photos }) => {
     <div className="flex flex-col gap-1">
       <label htmlFor="photos" className="ml-2 text-2xl font-bold">
         Fotos
-      </label> 
+      </label>
       <div className="flex gap-2">
         <input
           type="text"
@@ -38,16 +37,16 @@ const PhotoUploader = ({ photolink, setPhotoLink, setPhotos, photos }) => {
           Enviar foto
         </button>
       </div>
-
       <div className="mt-2 grid grid-cols-5 gap-4">
-        {photos.map((photo) =>  
-        <img
-          className="w-full aspect-square rounded-2xl object-cover"
-          src={photo}
-          alt="Imagem teste"
-        />   
-         )}  
-              
+        {photos.map((photo) => (
+          <img
+            className="aspect-square w-full rounded-2xl object-cover"
+            src={`${axios.defaults.baseURL}/tmp/${photo}`}
+            alt="Imagem teste"
+            key={photo}
+          />
+        ))}
+
         <label
           htmlFor="file"
           className="flex aspect-square cursor-pointer items-center justify-center gap-2 rounded-2xl border border-gray-300 hover:bg-gray-100"

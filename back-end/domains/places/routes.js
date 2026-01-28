@@ -3,7 +3,7 @@ import { Place } from "./model.js";
 import { JWTVerify } from "../../ultils/jwt.js";
 import { connectDb } from "../../config/db.js";
 import { downloadImage } from "../../ultils/imageDownloader.js";
-import { __dirname } from "../../index.js";
+import { __dirname } from "../../server.js";
 
 const router = Router();
 
